@@ -12,18 +12,9 @@ app.use(corsMiddleware);
 console.log('Starting server setup...');
 app.use('/api/', vacancyRouter);
 console.log('Route setup complete.');
-
-const start = async () => {
-  try {
       console.log('Connecting to MongoDB...');
-      await mongoose.connect(config.get("dbURL"));
+    mongoose.connect(config.get("dbURL"));
       console.log('Connected to MongoDB');
       app.listen(port, () => {
           console.log(`Server started at port ${port}`);
       });
-  } catch (e) {
-      console.error('Error starting the server:', e);
-  }
-};
-
-start();
